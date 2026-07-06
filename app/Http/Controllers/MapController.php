@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use App\Models\StasiunPengisian;
-use App\Models\RiwayatPengisian;
 use App\Models\AuditLog;
 
 class MapController extends Controller
 {
+    use \App\Http\Controllers\Traits\GeocodingTrait;
+
     public function index()
     {
         $stations = StasiunPengisian::with(['chargers' => function ($q) {
@@ -64,7 +64,7 @@ class MapController extends Controller
         $details = [];
 
         foreach ($stations as $st) {
-            $coord = $this->geocode($st->lokasi);
+            $coord = $this->geocodeLokasi($st->lokasi);
             if ($coord) {
                 $st->update([
                     'latitude'  => $coord['lat'],
@@ -99,37 +99,5 @@ class MapController extends Controller
         ]);
     }
 
-    /**
-     * Helper geocode via Nominatim (OpenStreetMap).
-     */
-    private function geocode(?string $lokasi): ?array
-    {
-        if (empty($lokasi)) return null;
-
-        try {
-            $resp = Http::timeout(8)
-                ->withHeaders(['User-Agent' => 'EVSahabatApp/1.0 (admin@ev-sahabat.com)'])
-                ->get('https://nominatim.openstreetmap.org/search', [
-                    'q'              => $lokasi,
-                    'format'         => 'json',
-                    'limit'          => 1,
-                    'countrycodes'   => 'id',
-                    'addressdetails' => 0,
-                ]);
-
-            if ($resp->successful()) {
-                $data = $resp->json();
-                if (!empty($data) && isset($data[0]['lat'], $data[0]['lon'])) {
-                    return [
-                        'lat' => (float) $data[0]['lat'],
-                        'lon' => (float) $data[0]['lon'],
-                    ];
-                }
-            }
-        } catch (\Throwable $e) {
-            // gagal → lewat
-        }
-        return null;
-    }
 }
 

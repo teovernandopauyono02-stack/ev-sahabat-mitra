@@ -3,44 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use App\Models\StasiunPengisian;
-
 use App\Models\AuditLog;
 
 class StasiunController extends Controller
 {
-    /**
-     * Coba geocode lokasi (Nominatim/OpenStreetMap).
-     * Return ['lat' => ..., 'lon' => ...] kalau ketemu, atau null kalau gagal.
-     */
-    private function geocodeLokasi(string $lokasi): ?array
-    {
-        try {
-            $resp = Http::timeout(8)
-                ->withHeaders(['User-Agent' => 'EVSahabatApp/1.0 (admin@ev-sahabat.com)'])
-                ->get('https://nominatim.openstreetmap.org/search', [
-                    'q'            => $lokasi,
-                    'format'       => 'json',
-                    'limit'        => 1,
-                    'countrycodes' => 'id',
-                    'addressdetails' => 0,
-                ]);
+    use \App\Http\Controllers\Traits\GeocodingTrait;
 
-            if ($resp->successful()) {
-                $data = $resp->json();
-                if (!empty($data) && isset($data[0]['lat'], $data[0]['lon'])) {
-                    return [
-                        'lat' => (float) $data[0]['lat'],
-                        'lon' => (float) $data[0]['lon'],
-                    ];
-                }
-            }
-        } catch (\Throwable $e) {
-            // Geocoding gagal → biarin lewat (DB tetap simpan tanpa koordinat)
-        }
-        return null;
-    }
     public function index()
     {
         $highlightId = request('highlight');

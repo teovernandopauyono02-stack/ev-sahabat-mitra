@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeder;
+namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\StasiunPengisian;
@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'     => 'Administrator',
                 'email'    => 'admin@ev-sahabat.com',
-                'password' => Hash::make('admin309'),
+                'password' => Hash::make('EvSahabat#Admin2026!'), // GANTI password ini setelah deploy!
             ]
         );
 
@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($sampleLog as $log) {
-            $start = Carbon::now()->subHours($log['hours_ago']);
+            $start = Carbon::now()->subHours($log['hour_ago']);
             $end   = $start->copy()->addMinutes(rand(30, 90));
 
             RiwayatPengisian::create([

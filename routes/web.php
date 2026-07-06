@@ -46,61 +46,61 @@ Route::post('/track/{token}/update',   [TrackingController::class, 'update'])->n
 // ================================================================
 Route::middleware('auth')->group(function () {
 
-  // ── Dashboard ────────────────────────────────────────────
-Route::get('/',                     [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/dashboard',            [DashboardController::class, 'index']);
-Route::get('/dashboard/chart-data', [DashboardController::class, 'chartData'])->name('dashboard.chart');
+    // ── Dashboard ──────────────────────────────────────────────
+    Route::get('/',                     [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard',            [DashboardController::class, 'index']);
+    Route::get('/dashboard/chart-data', [DashboardController::class, 'chartData'])->name('dashboard.chart');
 
-    // ── Station (Stasiun Pengisian) ───────────────────────────
+    // ── Station (Stasiun Pengisian) ─────────────────────────────
     Route::get('/station',         [StasiunController::class, 'index'])->name('station.index');
     Route::get('/station/{id}',    [StasiunController::class, 'show'])->name('station.show');
     Route::post('/station',        [StasiunController::class, 'store'])->name('station.store');
     Route::put('/station/{id}',    [StasiunController::class, 'update'])->name('station.update');
     Route::delete('/station/{id}', [StasiunController::class, 'destroy'])->name('station.destroy');
 
-    // ── Charger Unit ──────────────────────────────────────────
+    // ── Charger Unit ───────────────────────────────────────────
     Route::post('/charger',        [ChargerController::class, 'store'])->name('charger.store');
     Route::put('/charger/{id}',    [ChargerController::class, 'update'])->name('charger.update');
     Route::delete('/charger/{id}', [ChargerController::class, 'destroy'])->name('charger.destroy');
 
-    // ── Energy Log (Riwayat Pengisian) ────────────────────────
+    // ── Energy Log (Riwayat Pengisian) ──────────────────────────
     Route::get('/energy-log',         [RiwayatController::class, 'index'])->name('energy-log.index');
     Route::post('/energy-log',        [RiwayatController::class, 'store'])->name('energy-log.store');
     Route::put('/energy-log/{id}',    [RiwayatController::class, 'update'])->name('energy-log.update');
     Route::delete('/energy-log/{id}', [RiwayatController::class, 'destroy'])->name('energy-log.destroy');
 
-    // ── Report (Laporan Energi) ───────────────────────────────
+    // ── Report (Laporan Energi) ─────────────────────────────────
     Route::get('/report',              [ReportController::class, 'index'])->name('report.index');
     Route::get('/report/export-pdf',   [ReportController::class, 'exportPdf'])->name('report.export-pdf');
     Route::get('/report/export-excel', [ReportController::class, 'exportExcel'])->name('report.export-excel');
 
-    // ── Map View ──────────────────────────────────────────────
+    // ── Map View ────────────────────────────────────────────────
     Route::get('/map-view', [MapController::class, 'index'])->name('map-view.index');
     Route::post('/map-view/sync-coordinates', [MapController::class, 'syncCoordinates'])->name('map-view.sync-coordinates');
 
-    // ── Tracking Karyawan (admin endpoints) ──────────────────
+    // ── Tracking Karyawan (admin endpoints) ─────────────────────
     Route::post('/tracking/create',         [TrackingController::class, 'create'])->name('tracking.create');
     Route::get('/tracking/all',             [TrackingController::class, 'getAll'])->name('tracking.all');
     Route::delete('/tracking/{token}',      [TrackingController::class, 'destroy'])->name('tracking.destroy');
 
-    // ── Analytics (Big Data) ──────────────────────────────────
+    // ── Analytics (Big Data) ────────────────────────────────────
     Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics.index');
 
-    // ── Alert (Sistem Peringatan) ─────────────────────────────
+    // ── Alert (Sistem Peringatan) ───────────────────────────────
     Route::get('/alert',                     [AlertController::class, 'index'])->name('alert.index');
     Route::get('/alert/export-pdf',          [AlertController::class, 'exportPdf'])->name('alert.export-pdf');
     Route::post('/alert/resolve',            [AlertController::class, 'resolve'])->name('alert.resolve');
     Route::post('/alert/reset-resolved',     [AlertController::class, 'resetResolved'])->name('alert.reset-resolved');
 
-    // ── Security (Keamanan Data & Jaringan) ───────────────────
+    // ── Security (Keamanan Data & Jaringan) ─────────────────────
     Route::get('/security', [SecurityController::class, 'index'])->name('security.index');
 
-    // ── Audit Trail (Audit TI) ────────────────────────────────
+    // ── Audit Trail (Audit TI) ──────────────────────────────────
     Route::get('/audit',                  [App\Http\Controllers\AuditController::class, 'index'])->name('audit.index');
     Route::get('/audit/export-pdf',       [App\Http\Controllers\AuditController::class, 'exportPdf'])->name('audit.export-pdf');
     Route::get('/audit/{id}',             [App\Http\Controllers\AuditController::class, 'show'])->name('audit.show');
 
-    // ── API Integration (Integrasi Sistem) ───────────────────
+    // ── API Integration (Integrasi Sistem) ─────────────────────
     // Catatan: Route statis HARUS sebelum route dinamis {id}
     Route::get('/api-integration',                       [ApiintegrationController::class, 'index'])->name('api-integration.index');
     Route::get('/api-integration/stats',                 [ApiintegrationController::class, 'getStats'])->name('api-integration.stats');
@@ -120,7 +120,7 @@ Route::get('/dashboard/chart-data', [DashboardController::class, 'chartData'])->
     Route::post('/api-integration/{id}/fetch',           [ApiintegrationController::class, 'fetchData'])->name('api-integration.fetch');
     Route::get('/api-integration/{id}/chart-data',       [ApiintegrationController::class, 'getChartData'])->name('api-integration.chart');
 
-    // ── Setting (Konfigurasi Sistem) ──────────────────────────
+    // ── Setting (Konfigurasi Sistem) ────────────────────────────
     Route::get('/setting',           [SettingController::class, 'index'])->name('setting.index');
     Route::put('/setting/profile',   [SettingController::class, 'updateProfile'])->name('setting.profile');
     Route::put('/setting/password',  [SettingController::class, 'updatePassword'])->name('setting.password');
