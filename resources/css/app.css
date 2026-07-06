@@ -1,0 +1,4 @@
+/* EV Smart Energy Control Center — Vite entry
+   Actual styles are served from public/css/ directly.
+   This file exists so Vite build succeeds. */
+@import "tailwindcss";
