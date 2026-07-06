@@ -1,0 +1,269 @@
+/* ============================================================
+   MAP POPUP — EV Smart Energy
+   map-popup.css
+   ============================================================ */
+
+/* ── Leaflet popup wrapper ── */
+.station-popup-wrap .leaflet-popup-content-wrapper {
+    border-radius: 14px !important;
+    padding: 0 !important;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3) !important;
+    overflow: hidden;
+    border: none !important;
+}
+.station-popup-wrap .leaflet-popup-content {
+    margin: 0 !important;
+    width: 300px !important;
+    font-family: 'Inter', Arial, sans-serif !important;
+}
+.station-popup-wrap .leaflet-popup-tip-container { display: none; }
+
+/* ── Popup container ── */
+.station-popup {
+    font-size: 13px;
+    color: #1e293b;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+/* ── Header ── */
+.popup-header {
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+.popup-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.3px;
+}
+.popup-status {
+    font-size: 10px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.4);
+}
+
+/* ── Body ── */
+.popup-body {
+    padding: 14px 16px 16px;
+    background: #fff;
+}
+
+/* ── Lokasi ── */
+.popup-loc {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+.popup-loc i { color: #ef4444; font-size: 13px; }
+
+/* ── Stats grid ── */
+.popup-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 10px 8px;
+    margin-bottom: 12px;
+}
+.popup-stat { text-align: center; }
+.popup-stat-val {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1;
+    display: block;
+}
+.popup-stat-val.avail { color: #16a34a; }
+.popup-stat-val.inuse { color: #d97706; }
+.popup-stat-lbl {
+    font-size: 10px;
+    color: #64748b;
+    margin-top: 3px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    display: block;
+}
+
+/* ── Charger section ── */
+.popup-section { margin-bottom: 10px; }
+.popup-section-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
+}
+.popup-charger {
+    display: flex;
+    align-items: center;
+    padding: 7px 10px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 7px;
+    margin-bottom: 5px;
+    gap: 8px;
+}
+.popup-charger-name {
+    font-weight: 700;
+    color: #0f172a;
+    font-size: 12px;
+    min-width: 55px;
+}
+.popup-charger-meta {
+    color: #475569;
+    font-size: 11px;
+    flex: 1;
+}
+.popup-charger-status {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+}
+.popup-charger-status.avail   { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+.popup-charger-status.inuse   { background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; }
+.popup-charger-status.maint   { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+.popup-charger-status.offline { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+
+.popup-empty {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 12px;
+    font-style: italic;
+    padding: 10px 0;
+}
+
+/* ── Koordinat ── */
+.popup-coords {
+    font-size: 10px;
+    color: #94a3b8;
+    text-align: center;
+    padding: 8px 0 4px;
+    border-top: 1px dashed #e2e8f0;
+    margin-bottom: 10px;
+}
+.popup-coords i { margin-right: 3px; }
+
+/* ── Action buttons ── */
+.popup-actions {
+    display: flex;
+    gap: 8px;
+}
+.popup-btn {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none !important;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', Arial, sans-serif;
+}
+.popup-btn-primary {
+    background: linear-gradient(135deg, #d97706, #f59e0b);
+    color: #000 !important;
+    box-shadow: 0 3px 10px rgba(245,158,11,0.35);
+}
+.popup-btn-primary:hover {
+    background: linear-gradient(135deg, #b45309, #d97706);
+    color: #000 !important;
+    box-shadow: 0 5px 16px rgba(245,158,11,0.5);
+    text-decoration: none !important;
+}
+.popup-nav-wrap { position: relative; flex: 1; }
+.popup-btn-nav {
+    width: 100%;
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    color: #fff !important;
+    box-shadow: 0 3px 10px rgba(29,78,216,0.3);
+}
+.popup-btn-nav:hover {
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    box-shadow: 0 5px 16px rgba(29,78,216,0.45);
+}
+
+/* ── Nav dropdown ── */
+.popup-nav-menu {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 0; right: 0;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    overflow: hidden;
+    z-index: 9999;
+    min-width: 170px;
+}
+.popup-nav-menu.open { display: block; }
+.nav-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #1e293b;
+    text-decoration: none;
+    transition: background 0.12s;
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 100%;
+    font-family: 'Inter', Arial, sans-serif;
+    text-align: left;
+}
+.nav-option:hover { background: #f0f6ff; color: #1d4ed8; }
+.nav-divider { height: 1px; background: #e2e8f0; margin: 2px 0; }
+
+/* ── Toast koordinat ── */
+.coords-toast {
+    position: fixed;
+    bottom: 24px; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #0f172a;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transition: all 0.25s ease;
+    z-index: 99999;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+.coords-toast i { color: #22c55e; }
+.coords-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }

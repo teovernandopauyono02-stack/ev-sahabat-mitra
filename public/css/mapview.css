@@ -1,0 +1,200 @@
+/* ============================================================
+   mapview.css - Map View page styles
+   ============================================================ */
+
+/* ===== PAGE HEADER ===== */
+.map-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+.map-page-header h2 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 24px; font-weight: 700;
+    color: #ffffff; margin: 0 0 4px;
+}
+.map-page-header p {
+    font-size: 13px; color: #e2e8f0; margin: 0;
+}
+
+/* ===== STAT CARDS — gaya dashboard ===== */
+.map-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.map-stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.25s, box-shadow 0.25s;
+}
+/* Top bar 3px gradient */
+.map-stat-card::after {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.map-stat-card:nth-child(1)::after { background: linear-gradient(90deg, #06b6d4, #22d3ee); box-shadow: 0 0 12px rgba(6,182,212,0.6); }
+.map-stat-card:nth-child(2)::after { background: linear-gradient(90deg, #10b981, #34d399); box-shadow: 0 0 12px rgba(16,185,129,0.6); }
+.map-stat-card:nth-child(3)::after { background: linear-gradient(90deg, #ef4444, #f87171); box-shadow: 0 0 12px rgba(239,68,68,0.6); }
+.map-stat-card:nth-child(4)::after { background: linear-gradient(90deg, #FFD700, #fbbf24); box-shadow: 0 0 12px rgba(255,215,0,0.6); }
+
+.map-stat-card:nth-child(1):hover { border-color: rgba(6,182,212,0.4);  transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.35); }
+.map-stat-card:nth-child(2):hover { border-color: rgba(16,185,129,0.4); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.35); }
+.map-stat-card:nth-child(3):hover { border-color: rgba(239,68,68,0.4);  transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.35); }
+.map-stat-card:nth-child(4):hover { border-color: rgba(255,215,0,0.4);  transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.35); }
+
+/* Icon ghost kanan atas */
+.map-stat-icon {
+    position: absolute; top: 18px; right: 18px;
+    font-size: 30px; opacity: 0.1; flex-shrink: 0;
+    line-height: 1;
+}
+.map-stat-card:nth-child(1) .map-stat-icon { color: #06b6d4; }
+.map-stat-card:nth-child(2) .map-stat-icon { color: #10b981; }
+.map-stat-card:nth-child(3) .map-stat-icon { color: #ef4444; }
+.map-stat-card:nth-child(4) .map-stat-icon { color: #FFD700; }
+
+/* Angka vivid */
+.map-stat-val {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 40px; font-weight: 800; line-height: 1; margin-bottom: 4px;
+}
+.map-stat-card:nth-child(1) .map-stat-val { color: #22d3ee; text-shadow: 0 0 20px rgba(34,211,238,0.4); }
+.map-stat-card:nth-child(2) .map-stat-val { color: #34d399; text-shadow: 0 0 20px rgba(52,211,153,0.4); }
+.map-stat-card:nth-child(3) .map-stat-val { color: #f87171; text-shadow: 0 0 20px rgba(248,113,113,0.4); }
+.map-stat-card:nth-child(4) .map-stat-val { color: #FFD700; text-shadow: 0 0 20px rgba(255,215,0,0.4); }
+
+/* Label putih */
+.map-stat-label {
+    font-size: 10px; color: #e2e8f0;
+    text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-top: 2px;
+}
+
+/* ===== MAIN LAYOUT ===== */
+.map-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+    height: 600px;
+}
+
+/* ===== SIDEBAR ===== */
+.map-sidebar {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.sidebar-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+}
+.sidebar-search input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #e2e8f0;
+    font-size: 13px;
+}
+.sidebar-search input::placeholder { color: #94a3b8; }
+.sidebar-search { color: #e2e8f0; }
+.sidebar-list {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+}
+.sidebar-list::-webkit-scrollbar { width: 4px; }
+.sidebar-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-light);
+    cursor: pointer;
+    transition: background 0.15s;
+    color: #e2e8f0;
+}
+.sidebar-item:hover { background: rgba(6,182,212,0.06); }
+.sidebar-item:last-child { border-bottom: none; }
+.sidebar-item-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.sidebar-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%; flex-shrink: 0;
+}
+.dot-active   { background: #22c55e; box-shadow: 0 0 6px #22c55e88; }
+.dot-maint    { background: #ef4444; box-shadow: 0 0 6px #ef444488; }
+.dot-inactive { background: #ffc800; box-shadow: 0 0 6px #ffc80088; }
+
+.sidebar-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px; font-weight: 700; color: #FFD700;
+}
+.sidebar-loc {
+    font-size: 11px; color: #e2e8f0; margin-top: 2px;
+}
+
+/* ===== MAP ===== */
+.map-main { overflow: hidden; }
+#mainMap {
+    height: calc(100% - 49px);
+    width: 100%;
+}
+
+/* ===== LEGEND ===== */
+.map-legend-inline {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #e2e8f0;
+    gap: 6px;
+}
+.legend-dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+}
+
+/* ===== BADGE ===== */
+.badge { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.badge-active {
+    background: rgba(0,255,136,0.15);
+    color: #00ff88; border: 1px solid #00ff88;
+}
+.badge-maintenance {
+    background: rgba(255,59,59,0.15);
+    color: #ff3b3b; border: 1px solid #ff3b3b;
+}
+.badge-inactive {
+    background: rgba(255,200,0,0.15);
+    color: #ffc800; border: 1px solid #ffc800;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .map-stats  { grid-template-columns: repeat(2, 1fr); }
+    .map-layout { grid-template-columns: 1fr; height: auto; }
+    #mainMap    { height: 400px; }
+}
+@media (max-width: 600px) {
+    .map-stats { grid-template-columns: 1fr 1fr; }
+}

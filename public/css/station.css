@@ -1,0 +1,235 @@
+/* ============================================================
+   station.css - Station page styles
+   ============================================================ */
+
+/* ===== PAGE HEADER ===== */
+.page-header {
+    display: flex; align-items: center;
+    justify-content: space-between; margin-bottom: 24px;
+}
+.page-header-left h2 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 24px; font-weight: 700;
+    color: var(--text-primary); margin: 0 0 4px;
+}
+.page-header-left p { font-size: 13px; color: var(--text-muted); margin: 0; }
+
+/* ===== ALERT BANNERS ===== */
+.alert-banner {
+    background: rgba(255,59,59,0.1); border: 1px solid #ff3b3b;
+    border-radius: 8px; padding: 10px 16px; margin-bottom: 16px;
+    color: #ff3b3b; font-size: 13px; display: flex; align-items: center; gap: 8px;
+}
+.alert-banner-warning {
+    background: rgba(255,200,0,0.1); border: 1px solid #ffc800;
+    border-radius: 8px; padding: 10px 16px; margin-bottom: 16px;
+    color: #ffc800; font-size: 13px; display: flex; align-items: center; gap: 8px;
+}
+
+/* ===== TABLE ===== */
+.table-wrap { overflow-x: auto; }
+.table-wrap table { width: 100%; border-collapse: collapse; }
+.table-wrap thead th {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #FFD700;
+    padding: 11px 16px; border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+    text-align: center;
+    background: rgba(255,215,0,0.03);
+}
+/* Kolom nama & lokasi tetap kiri */
+.table-wrap thead th:nth-child(2),
+.table-wrap thead th:nth-child(3) { text-align: left; }
+/* Kolom aksi tetap kanan */
+.table-wrap thead th:last-child { text-align: right; }
+
+.table-wrap tbody td {
+    padding: 11px 16px; border-bottom: 1px solid var(--border-light);
+    font-size: 13px; color: var(--text-primary); vertical-align: middle;
+    text-align: center;
+}
+/* No — putih */
+.table-wrap tbody td:nth-child(1) {
+    color: #e2e8f0 !important;
+    font-size: 13px; font-weight: 500;
+}
+/* Nama stasiun — emas */
+.table-wrap tbody td:nth-child(2) { text-align: left; }
+.table-wrap tbody td:nth-child(2) .station-link,
+.table-wrap tbody td:nth-child(2) a:not(.btn) {
+    color: #FFD700;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px; font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+.table-wrap tbody td:nth-child(2) .station-link:hover,
+.table-wrap tbody td:nth-child(2) a:not(.btn):hover {
+    color: #ffe55c;
+    text-shadow: 0 0 10px rgba(255,215,0,0.4);
+}
+/* Lokasi — putih */
+.table-wrap tbody td:nth-child(3) { text-align: left; color: #e2e8f0; }
+/* Koordinat — putih */
+.coord-cell { font-size: 12px; color: #e2e8f0 !important; }
+/* Dibuat — putih */
+.date-cell  { font-size: 12px; color: #e2e8f0 !important; }
+/* Kolom aksi tetap kanan */
+.table-wrap tbody td:last-child { text-align: right; }
+
+.table-wrap tbody tr:last-child td { border-bottom: none; }
+.table-wrap tbody tr:hover { background: rgba(6,182,212,0.04); }
+
+/* ===== HIGHLIGHT ROWS ===== */
+.highlight-row { background: rgba(255,59,59,0.15) !important; border-left: 3px solid #ff3b3b; }
+.highlight-row-warning { background: rgba(255,200,0,0.15) !important; border-left: 3px solid #ffc800; }
+
+/* ===== STATION LINK ===== */
+.station-link {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px; font-weight: 700;
+    color: var(--cyan); text-decoration: none;
+    transition: opacity 0.2s;
+}
+.station-link:hover { opacity: 0.8; text-decoration: underline; }
+
+/* ===== BADGES ===== */
+.badge { padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.badge-active {
+    background: rgba(0,255,136,0.15); color: #00ff88; border: 1px solid #00ff88;
+}
+.badge-maintenance {
+    background: rgba(255,59,59,0.15); color: #ff3b3b; border: 1px solid #ff3b3b;
+}
+.badge-inactive {
+    background: rgba(255,200,0,0.15); color: #ffc800; border: 1px solid #ffc800;
+}
+.badge-problem {
+    font-size: 10px; background: #ff3b3b; color: #fff;
+    border-radius: 4px; padding: 1px 6px; margin-left: 6px;
+}
+.badge-inactive-warn {
+    font-size: 10px; background: #ffc800; color: #000;
+    border-radius: 4px; padding: 1px 6px; margin-left: 6px;
+}
+
+/* ===== UNIT COUNT ===== */
+.unit-count {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(0,210,255,0.1); color: var(--cyan);
+    border: 1px solid rgba(0,210,255,0.3);
+    border-radius: 20px; padding: 2px 10px;
+    font-size: 12px; font-weight: 600;
+}
+
+/* ===== COORD / DATE CELL ===== */
+.coord-cell { font-size: 12px; color: var(--text-muted); }
+.date-cell  { font-size: 12px; color: var(--text-muted); }
+
+/* ===== EMPTY CELL ===== */
+.empty-cell {
+    text-align: center; padding: 48px;
+    color: var(--text-muted);
+}
+.empty-icon {
+    font-size: 36px; display: block;
+    margin-bottom: 12px; opacity: 0.2;
+}
+
+/* ===== ACTION CELL ===== */
+.action-cell { display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
+
+/* ===== SEARCH BOX ===== */
+.search-box {
+    display: flex; align-items: center; gap: 8px;
+    color: var(--text-muted);
+}
+.search-box input { color: var(--text-primary); }
+
+/* ===== PAGINATION ===== */
+.pagination-wrap {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px; border-top: 1px solid var(--border);
+    font-size: 13px; color: var(--text-muted);
+}
+.pagination { display: flex; gap: 4px; }
+.page-link {
+    padding: 5px 10px; border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--bg-secondary); color: var(--text-secondary);
+    font-size: 12px; text-decoration: none; transition: all 0.15s;
+}
+.page-link:hover { border-color: var(--cyan); color: var(--cyan); }
+.page-link.active {
+    background: var(--cyan); border-color: var(--cyan);
+    color: #0d1117; font-weight: 600;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 16px; border-radius: 6px;
+    font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+    border: none; text-decoration: none;
+}
+.btn-primary {
+    background: var(--cyan); color: #0d1117; font-weight: 600;
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+    background: var(--bg-secondary); border: 1px solid var(--border);
+    color: #e2e8f0;
+}
+.btn-secondary:hover { border-color: var(--cyan); color: #ffffff; }
+.btn-danger {
+    background: rgba(224,82,82,0.15); border: 1px solid rgba(224,82,82,0.3);
+    color: #ef4444;
+}
+.btn-danger:hover { background: rgba(224,82,82,0.25); }
+.btn-sm { padding: 6px 12px; font-size: 12px; }
+
+/* ===== FORM ===== */
+.form-group { margin-bottom: 16px; }
+.form-label {
+    display: block; font-size: 12px; font-weight: 600;
+    color: var(--text-muted); margin-bottom: 6px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+}
+.form-control {
+    width: 100%; padding: 10px 14px; border-radius: 6px;
+    border: 1px solid var(--border); background: var(--bg-secondary);
+    color: var(--text-primary); font-size: 13px; box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+.form-control:focus { outline: none; border-color: var(--cyan); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* ===== MODAL ===== */
+.modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.6); z-index: 999;
+    justify-content: center; align-items: center;
+}
+.modal {
+    background: var(--bg-card); border-radius: 12px;
+    padding: 28px; width: 100%; max-width: 480px;
+    border: 1px solid var(--border); position: relative;
+    max-height: 90vh; overflow-y: auto;
+}
+.modal-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--cyan); margin-bottom: 20px;
+}
+.modal-action {
+    display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;
+}
+.btn-close-modal {
+    position: absolute; top: 16px; right: 16px;
+    background: none; border: none; color: var(--text-muted);
+    font-size: 16px; cursor: pointer; transition: color 0.2s;
+}
+.btn-close-modal:hover { color: var(--text-primary); }

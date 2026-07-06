@@ -1,0 +1,464 @@
+/* ============================================================
+   dashboard.css - Dashboard specific styles
+   ============================================================ */
+
+/* ===== STAT CARDS ===== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+}
+.stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.35); }
+.stat-card::after {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.stat-card.c-cyan::after   { background: linear-gradient(90deg, #06b6d4, #22d3ee); box-shadow: 0 0 12px rgba(6,182,212,0.6); }
+.stat-card.c-green::after  { background: linear-gradient(90deg, #10b981, #34d399); box-shadow: 0 0 12px rgba(16,185,129,0.6); }
+.stat-card.c-red::after    { background: linear-gradient(90deg, #ef4444, #f87171); box-shadow: 0 0 12px rgba(239,68,68,0.6); }
+.stat-card.c-yellow::after { background: linear-gradient(90deg, #FFD700, #fbbf24); box-shadow: 0 0 12px rgba(255,215,0,0.6); }
+
+.stat-card.c-cyan:hover   { border-color: rgba(6,182,212,0.4); }
+.stat-card.c-green:hover  { border-color: rgba(16,185,129,0.4); }
+.stat-card.c-red:hover    { border-color: rgba(239,68,68,0.4); }
+.stat-card.c-yellow:hover { border-color: rgba(255,215,0,0.4); }
+
+.stat-label {
+    font-size: 10px; color: #e2e8f0;
+    text-transform: uppercase; letter-spacing: 0.8px;
+    font-weight: 600; margin-bottom: 8px;
+}
+.stat-value {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 40px; font-weight: 700; line-height: 1; margin-bottom: 4px;
+}
+.stat-value.c-cyan   { color: #22d3ee; text-shadow: 0 0 20px rgba(6,182,212,0.4); }
+.stat-value.c-green  { color: #34d399; text-shadow: 0 0 20px rgba(16,185,129,0.4); }
+.stat-value.c-red    { color: #f87171; text-shadow: 0 0 20px rgba(239,68,68,0.4); }
+.stat-value.c-yellow { color: #FFD700; text-shadow: 0 0 20px rgba(255,215,0,0.4); }
+.stat-unit { font-size: 12px; color: #e2e8f0; }
+.stat-icon {
+    position: absolute; top: 18px; right: 18px;
+    font-size: 30px; opacity: 0.1;
+}
+
+/* ===== DASHBOARD GRID ===== */
+.dash-grid-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+    align-items: stretch;
+}
+.dash-grid-top .card {
+    display: flex;
+    flex-direction: column;
+}
+.dash-grid-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Card title warna emas */
+.card .card-title { color: #FFD700; }
+
+/* ===== CHART ===== */
+.chart-filters { display: flex; gap: 4px; flex-wrap: wrap; }
+.filter-btn {
+    padding: 5px 12px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 4px; color: #e2e8f0;
+    font-size: 11px; font-weight: 600; cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex; align-items: center;
+}
+.filter-btn:hover {
+    background: rgba(255,215,0,0.1);
+    border-color: rgba(255,215,0,0.3);
+    color: #FFD700;
+}
+.filter-btn.active {
+    background: #FFD700;
+    border-color: #FFD700;
+    color: #0a0a00;
+    box-shadow: 0 0 10px rgba(255,215,0,0.3);
+}
+
+/* ===== CUSTOM STATION PICKER ===== */
+.station-picker {
+    position: relative;
+}
+.station-picker-btn {
+    min-width: 100px;
+    justify-content: space-between;
+    gap: 6px;
+}
+.station-picker-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    min-width: 160px;
+    background: #0f1c30;
+    border: 1px solid rgba(255,215,0,0.3);
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    z-index: 200;
+    overflow: hidden;
+    animation: spFadeIn 0.15s ease;
+}
+@keyframes spFadeIn {
+    from { opacity:0; transform:translateY(-4px); }
+    to   { opacity:1; transform:translateY(0); }
+}
+.station-picker-dropdown.open { display: block; }
+.sp-item {
+    padding: 8px 14px;
+    font-size: 12px; font-weight: 500;
+    color: #e2e8f0;
+    cursor: pointer;
+    transition: all 0.15s;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.sp-item:last-child { border-bottom: none; }
+.sp-item:hover {
+    background: rgba(255,215,0,0.1);
+    color: #FFD700;
+}
+.sp-item.sp-active {
+    background: rgba(255,215,0,0.12);
+    color: #FFD700;
+    font-weight: 700;
+}
+.chart-wrap {
+    padding: 12px 16px 16px;
+    flex: 1;
+    min-height: 420px;
+    max-height: 420px;
+    position: relative;
+}
+
+/* ===== DASH TABLE (Station & Log di dashboard) ===== */
+.dash-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    table-layout: fixed;
+}
+.dash-table thead th {
+    padding: 9px 12px;
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.6px;
+    color: #FFD700;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,215,0,0.03);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+.dash-table tbody tr {
+    border-bottom: 1px solid var(--border-light);
+    transition: background 0.15s;
+}
+.dash-table tbody tr:last-child { border-bottom: none; }
+.dash-table tbody tr:hover { background: rgba(6,182,212,0.04); }
+.dash-table tbody td {
+    padding: 9px 12px;
+    color: var(--text-primary);
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ── Station table: kolom 3,4,5 tengah ── */
+.station-tbl thead th:nth-child(3),
+.station-tbl thead th:nth-child(4),
+.station-tbl thead th:nth-child(5) { text-align: center; }
+.station-tbl tbody td:nth-child(3),
+.station-tbl tbody td:nth-child(4),
+.station-tbl tbody td:nth-child(5) { text-align: center; }
+
+/* Nama stasiun — emas */
+.station-tbl tbody td:nth-child(1) {
+    color: #FFD700;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 0.3px;
+}
+.station-tbl tbody td:nth-child(1) a {
+    color: #FFD700;
+    text-decoration: none;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+.station-tbl tbody td:nth-child(1) a:hover {
+    color: #ffe55c;
+    text-shadow: 0 0 10px rgba(255,215,0,0.4);
+}
+/* Lokasi — putih */
+.station-tbl tbody td:nth-child(2) { color: #e2e8f0; font-size: 13px; }
+/* Unit — cyan */
+.station-tbl tbody td:nth-child(3) { color: #06b6d4; font-weight: 600; }
+
+/* ── Log table: kolom 1,4,5,6 tengah ── */
+.log-tbl thead th:nth-child(1),
+.log-tbl thead th:nth-child(4),
+.log-tbl thead th:nth-child(5),
+.log-tbl thead th:nth-child(6) { text-align: center; }
+.log-tbl tbody td:nth-child(1),
+.log-tbl tbody td:nth-child(4),
+.log-tbl tbody td:nth-child(5),
+.log-tbl tbody td:nth-child(6) { text-align: center; }
+
+/* No — putih elegan */
+.log-tbl tbody td:nth-child(1) {
+    color: #e2e8f0;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px; font-weight: 500;
+}
+/* Nama stasiun — emas */
+.log-tbl tbody td:nth-child(2) {
+    color: #FFD700;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 0.3px;
+}
+/* Lokasi — putih */
+.log-tbl tbody td:nth-child(3) { color: #e2e8f0; font-size: 13px; }
+/* Energi kWh — hijau */
+.log-tbl tbody td:nth-child(4) {
+    color: #22c55e;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px; font-weight: 700;
+}
+/* Waktu — putih */
+.log-tbl tbody td:nth-child(5) { color: #e2e8f0; font-size: 12px; font-weight: 500; }
+    color: var(--text-primary);
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+}
+
+/* Station: kolom 3,4,5 tengah */
+.station-tbl thead th:nth-child(3),
+.station-tbl thead th:nth-child(4),
+.station-tbl thead th:nth-child(5) { text-align: center; }
+.station-tbl tbody td:nth-child(3),
+.station-tbl tbody td:nth-child(4),
+.station-tbl tbody td:nth-child(5) { text-align: center; }
+
+/* Log: kolom 1,4,5,6 tengah */
+.log-tbl thead th:nth-child(1),
+.log-tbl thead th:nth-child(4),
+.log-tbl thead th:nth-child(5),
+.log-tbl thead th:nth-child(6) { text-align: center; }
+.log-tbl tbody td:nth-child(1),
+.log-tbl tbody td:nth-child(4),
+.log-tbl tbody td:nth-child(5),
+.log-tbl tbody td:nth-child(6) { text-align: center; }
+
+/* ===== STATION ROWS (legacy grid — tidak dipakai lagi) ===== */
+.station-header {
+    display: grid;
+    grid-template-columns: 90px 1fr 1fr 60px 110px 44px;
+    padding: 10px 16px;
+    gap: 8px;
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.8px; color: #FFD700;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    text-align: center;
+    background: rgba(255,215,0,0.03);
+}
+.station-header span:nth-child(2) { text-align: left; }
+.station-header span:nth-child(3) { text-align: left; }
+
+.station-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 1fr 60px 110px 44px;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-light);
+    transition: background 0.15s;
+    text-align: center;
+}
+.station-row > * { display: flex; align-items: center; justify-content: center; }
+.station-row > a.station-id { justify-content: flex-start; }
+.station-row > .station-loc { justify-content: flex-start; text-align: left; }
+.station-row:last-child { border-bottom: none; }
+.station-row:hover { background: rgba(6,182,212,0.04); }
+.station-id {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px; font-weight: 700;
+    color: #FFD700;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+}
+.station-id:hover {
+    color: #ffe55c;
+    text-shadow: 0 0 10px rgba(255,215,0,0.4);
+    text-decoration: none;
+}
+.station-loc { font-size: 13px; color: var(--text-secondary); }
+.station-unit {
+    font-size: 12px; font-weight: 600;
+    color: #06b6d4;
+    gap: 4px;
+    display: inline-flex; align-items: center;
+}
+
+/* ===== LOG ROWS ===== */
+.log-header {
+    display: grid;
+    grid-template-columns: 36px 90px 1fr 90px 70px 36px;
+    padding: 10px 16px;
+    gap: 8px;
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.8px; color: #FFD700;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    background: rgba(255,215,0,0.03);
+}
+.log-header span:nth-child(3) { text-align: left; }
+
+.log-row {
+    display: grid;
+    grid-template-columns: 36px 90px 1fr 90px 70px 36px;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-light);
+    transition: background 0.15s;
+    text-align: center;
+}
+.log-row > * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.log-row .log-lokasi {
+    justify-content: flex-start;
+    text-align: left;
+}
+.log-row:last-child { border-bottom: none; }
+.log-row:hover { background: rgba(6,182,212,0.04); }
+.log-no {
+    font-size: 12px;
+    font-weight: 700;
+    color: #FFD700;
+    font-family: 'Rajdhani', sans-serif;
+}
+.log-station {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    color: #FFD700;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    transition: all 0.2s;
+}
+.log-station:hover { color: #ffe55c; text-shadow: 0 0 10px rgba(255,215,0,0.4); }
+.log-lokasi { font-size: 12px; color: var(--text-secondary); }
+.log-energy {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px; font-weight: 700;
+    color: #22c55e;
+    letter-spacing: 0.3px;
+}
+.log-time {
+    color: #06b6d4;
+    font-size: 12px;
+    font-weight: 600;
+}
+.log-action {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-edit-sm {
+    padding: 4px 9px; border-radius: 4px; font-size: 11px;
+    background: var(--bg-secondary); border: 1px solid var(--border);
+    color: var(--text-secondary); cursor: pointer; transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 4px;
+}
+.btn-edit-sm:hover { color: var(--text-primary); }
+.btn-del-sm {
+    padding: 5px 9px; border-radius: 6px; font-size: 11px;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.3);
+    color: #f87171; cursor: pointer; transition: all 0.2s;
+    display: inline-flex; align-items: center; justify-content: center;
+}
+.btn-del-sm:hover {
+    background: rgba(239,68,68,0.22);
+    border-color: rgba(239,68,68,0.5);
+    color: #ef4444;
+    box-shadow: 0 0 8px rgba(239,68,68,0.2);
+}
+
+/* ===== LOG PAGINATION ===== */
+.log-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 20px; border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--text-muted);
+}
+
+/* ===== MAP ===== */
+#map {
+    height: 340px;
+    width: 100%;
+}
+.map-legend {
+    display: flex; gap: 16px; padding: 10px 16px;
+    border-top: 1px solid var(--border);
+    font-size: 12px; color: #e2e8f0;
+}
+.map-legend-item {
+    display: flex; align-items: center; gap: 6px;
+}
+.map-legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%; flex-shrink: 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+    .stats-grid      { grid-template-columns: repeat(2,1fr); }
+    .dash-grid-top   { grid-template-columns: 1fr; }
+    .dash-grid-bottom{ grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ===== BADGE STATUS ===== */
+.badge { padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.badge-active {
+    background: rgba(0,255,136,0.15);
+    color: #00ff88; border: 1px solid #00ff88;
+}
+.badge-maintenance {
+    background: rgba(255,59,59,0.15);
+    color: #ff3b3b; border: 1px solid #ff3b3b;
+}
+.badge-inactive {
+    background: rgba(255,200,0,0.15);
+    color: #ffc800; border: 1px solid #ffc800;
+}

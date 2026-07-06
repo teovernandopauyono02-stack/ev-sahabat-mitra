@@ -1,0 +1,147 @@
+/* ============================================================
+   stasiun-detail.css - Station Detail page styles
+   ============================================================ */
+
+/* ===== DETAIL HEADER ===== */
+.detail-header {
+    display: flex; align-items: center;
+    gap: 16px; margin-bottom: 24px;
+}
+.back-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: 8px;
+    background: var(--bg-secondary); border: 1px solid var(--border);
+    color: var(--text-secondary); font-size: 13px;
+    text-decoration: none; transition: all 0.2s; white-space: nowrap;
+}
+.back-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+.detail-title-wrap { flex: 1; }
+.detail-title {
+    margin: 0 0 4px; font-family: 'Rajdhani', sans-serif;
+    font-size: 24px; font-weight: 700; color: var(--cyan);
+}
+.detail-subtitle { margin: 0; font-size: 13px; color: var(--text-muted); }
+
+/* ===== INFO CARDS ===== */
+.station-info-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 16px; margin-bottom: 24px;
+}
+.info-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 16px 20px;
+    display: flex; align-items: center; gap: 14px;
+    transition: transform 0.2s, border-color 0.2s;
+}
+.info-card:hover { transform: translateY(-2px); border-color: rgba(0,210,255,0.3); }
+.info-icon { font-size: 28px; opacity: 0.8; }
+.info-card-label {
+    font-size: 11px; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.6px;
+    font-weight: 600; margin-bottom: 4px;
+}
+.info-card-val {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 28px; font-weight: 700; line-height: 1;
+}
+
+/* ===== UNIT BADGE ===== */
+.unit-badge {
+    display: inline-flex; align-items: center;
+    background: rgba(0,210,255,0.1); color: var(--cyan);
+    border: 1px solid rgba(0,210,255,0.3);
+    border-radius: 20px; padding: 2px 10px;
+    font-size: 12px; font-weight: 600;
+    margin-left: 8px; font-family: 'Inter', sans-serif;
+}
+
+/* ===== CHARGER GRID ===== */
+.charger-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px; padding: 20px;
+}
+
+/* ===== CHARGER CARD ===== */
+.charger-card {
+    background: var(--bg-secondary); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px;
+    transition: transform 0.2s, border-color 0.2s;
+}
+.charger-card:hover { transform: translateY(-3px); border-color: rgba(0,210,255,0.3); }
+
+.charger-card-top {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; margin-bottom: 12px;
+}
+.charger-code {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px; font-weight: 700; color: var(--cyan);
+}
+.charger-tipe {
+    font-size: 11px; font-weight: 600;
+    padding: 3px 8px; border-radius: 4px;
+}
+.tipe-ac           { background: rgba(0,210,255,0.15); color: var(--cyan); }
+.tipe-dc           { background: rgba(57,211,83,0.15);  color: var(--green); }
+.tipe-fast-charging{ background: rgba(255,200,0,0.15);  color: var(--yellow); }
+
+.charger-daya {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 32px; font-weight: 700;
+    color: var(--yellow); line-height: 1; margin-bottom: 6px;
+}
+.charger-daya-unit {
+    font-size: 14px; color: var(--text-muted);
+    font-family: 'Inter', sans-serif; font-weight: 400;
+}
+
+.charger-status-wrap {
+    display: flex; align-items: center; gap: 6px;
+    margin-bottom: 14px;
+}
+.charger-status-text { font-size: 13px; font-weight: 600; }
+
+/* ===== CHARGER ACTIONS ===== */
+.charger-actions { display: flex; gap: 8px; }
+.btn-charger-edit {
+    flex: 1; padding: 7px; border-radius: 6px; font-size: 12px;
+    background: rgba(56,139,253,0.15); color: #388bfd;
+    border: 1px solid rgba(56,139,253,0.3);
+    cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+}
+.btn-charger-edit:hover { background: rgba(56,139,253,0.25); }
+.btn-charger-del {
+    padding: 7px 12px; border-radius: 6px; font-size: 12px;
+    background: rgba(224,82,82,0.15); color: #ef4444;
+    border: 1px solid rgba(224,82,82,0.3);
+    cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center;
+}
+.btn-charger-del:hover { background: rgba(224,82,82,0.25); }
+
+/* ===== EMPTY CHARGER ===== */
+.empty-charger {
+    text-align: center; padding: 60px 20px;
+    color: var(--text-muted); grid-column: 1 / -1;
+}
+.empty-charger i {
+    font-size: 52px; display: block;
+    margin-bottom: 16px; opacity: 0.15;
+}
+.empty-charger-title {
+    font-size: 16px; font-weight: 600;
+    color: var(--text-primary); margin-bottom: 6px;
+}
+.empty-charger-sub { font-size: 13px; color: var(--text-muted); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .station-info-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .station-info-grid { grid-template-columns: 1fr 1fr; }
+    .charger-grid      { grid-template-columns: 1fr; }
+    .detail-header     { flex-wrap: wrap; }
+}

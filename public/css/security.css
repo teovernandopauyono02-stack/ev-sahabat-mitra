@@ -1,0 +1,135 @@
+/* ===== SECURITY DASHBOARD ===== */
+.sec-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 20px;
+}
+.sec-header h2 {
+    font-family: 'Rajdhani', sans-serif; font-size: 24px; font-weight: 700;
+    color: #f1f5f9; margin-bottom: 4px;
+    display: flex; align-items: center; gap: 12px;
+}
+.sec-header p { font-size: 12px; color: #94a3b8; }
+
+/* ===== STATUS KEAMANAN SISTEM ===== */
+.sec-status-bar {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 18px; border-radius: 12px; margin-bottom: 20px; border: 1px solid;
+}
+.sec-status-bar.aman    { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); }
+.sec-status-bar.waspada { background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.3); animation: statusPulse 2s ease-in-out infinite; }
+.sec-status-bar.bahaya  { background: rgba(239,68,68,0.1);   border-color: rgba(239,68,68,0.4);  animation: statusPulse 1s ease-in-out infinite; }
+@keyframes statusPulse {
+    0%,100% { box-shadow: 0 0 0 0 transparent; }
+    50%      { box-shadow: 0 0 12px 2px rgba(245,158,11,0.2); }
+}
+.sec-status-icon { font-size: 22px; flex-shrink: 0; }
+.sec-status-text { flex: 1; }
+.sec-status-title { font-size: 14px; font-weight: 700; }
+.sec-status-bar.aman    .sec-status-title { color: #34d399; }
+.sec-status-bar.waspada .sec-status-title { color: #fbbf24; }
+.sec-status-bar.bahaya  .sec-status-title { color: #f87171; }
+.sec-status-sub  { font-size: 12px; color: #94a3b8; margin-top: 2px; }
+.sec-status-time { font-size: 11px; color: #64748b; }
+
+/* ===== STAT CARDS ===== */
+.sec-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 20px; }
+.sec-stat {
+    background: linear-gradient(135deg, rgba(15,28,48,0.95), rgba(10,20,38,0.9));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 16px 18px;
+    position: relative; overflow: hidden; transition: all 0.25s;
+}
+.sec-stat::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    border-radius: 12px 12px 0 0;
+}
+.sec-stat:hover { transform: translateY(-2px); }
+.sec-stat.s1::before { background: linear-gradient(90deg,#00ff88,#00cc66) !important; }
+.sec-stat.s2::before { background: linear-gradient(90deg,#ff3b3b,#ff6b6b) !important; }
+.sec-stat.s3::before { background: linear-gradient(90deg,#00d4ff,#00aaff) !important; }
+.sec-stat.s4::before { background: linear-gradient(90deg,#ffcc00,#ffaa00) !important; }
+.sec-stat.s5::before { background: linear-gradient(90deg,#cc88ff,#aa55ff) !important; }
+.sec-stat.s1:hover { border-color: rgba(0,255,136,0.6);   box-shadow: 0 6px 24px rgba(0,255,136,0.2); }
+.sec-stat.s2:hover { border-color: rgba(255,59,59,0.6);   box-shadow: 0 6px 24px rgba(255,59,59,0.2); }
+.sec-stat.s3:hover { border-color: rgba(0,212,255,0.6);   box-shadow: 0 6px 24px rgba(0,212,255,0.2); }
+.sec-stat.s4:hover { border-color: rgba(255,204,0,0.6);   box-shadow: 0 6px 24px rgba(255,204,0,0.2); }
+.sec-stat.s5:hover { border-color: rgba(204,136,255,0.6); box-shadow: 0 6px 24px rgba(204,136,255,0.2); }
+.sec-val { font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 800; line-height: 1; margin-bottom: 4px; }
+.sec-stat.s1 .sec-val { color: #00ff88 !important; text-shadow: 0 0 20px rgba(0,255,136,0.6) !important; }
+.sec-stat.s2 .sec-val { color: #ff3b3b !important; text-shadow: 0 0 20px rgba(255,59,59,0.6) !important; }
+.sec-stat.s3 .sec-val { color: #00d4ff !important; text-shadow: 0 0 20px rgba(0,212,255,0.6) !important; }
+.sec-stat.s4 .sec-val { color: #ffcc00 !important; text-shadow: 0 0 20px rgba(255,204,0,0.6) !important; }
+.sec-stat.s5 .sec-val { color: #cc88ff !important; text-shadow: 0 0 20px rgba(204,136,255,0.6) !important; }
+.sec-lbl { font-size: 10px; color: #cbd5e1 !important; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+.sec-sub  { font-size: 10px; color: #94a3b8 !important; margin-top: 4px; }
+.sec-ico  { position: absolute; top: 14px; right: 16px; font-size: 22px; opacity: 0.2; }
+.sec-stat.s1 .sec-ico { color: #00ff88; }
+.sec-stat.s2 .sec-ico { color: #ff3b3b; }
+.sec-stat.s3 .sec-ico { color: #00d4ff; }
+.sec-stat.s4 .sec-ico { color: #ffcc00; }
+.sec-stat.s5 .sec-ico { color: #cc88ff; }
+
+/* ===== GRID 2 KOLOM ===== */
+.sec-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.sec-card {
+    background: linear-gradient(135deg, rgba(15,28,48,0.95), rgba(10,20,38,0.9));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 16px 18px;
+}
+.sec-card-hdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.sec-card-title {
+    font-size: 13px; font-weight: 700; color: #FFD700 !important;
+    display: flex; align-items: center; gap: 8px;
+    text-shadow: 0 0 10px rgba(255,215,0,0.3);
+}
+.sec-card-sub { font-size: 10px; color: #94a3b8 !important; }
+
+/* ===== THREAT LEVEL ===== */
+.threat-level { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 8px; margin-bottom: 12px; font-size: 12px; font-weight: 600; }
+.threat-low    { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); color: #34d399; }
+.threat-medium { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.25); color: #fbbf24; }
+.threat-high   { background: rgba(239,68,68,0.1);  border: 1px solid rgba(239,68,68,0.25);  color: #f87171; }
+
+/* ===== LOGIN CHART ===== */
+#loginChart { width: 100% !important; height: 160px !important; }
+
+/* ===== SUSPICIOUS IP ===== */
+.sus-item {
+    display: flex; align-items: center; gap: 12px; padding: 10px 12px;
+    background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.15);
+    border-radius: 8px; margin-bottom: 8px;
+    animation: susAlert 2s ease-in-out infinite;
+}
+@keyframes susAlert {
+    0%,100% { border-color: rgba(239,68,68,0.15); }
+    50%      { border-color: rgba(239,68,68,0.4); box-shadow: 0 0 8px rgba(239,68,68,0.1); }
+}
+.sus-ip    { font-family: monospace; font-size: 13px; font-weight: 700; color: #fca5a5 !important; flex: 1; }
+.sus-count { font-size: 11px; color: #fde68a !important; font-weight: 700; }
+.sus-badge { background: rgba(239,68,68,0.2); color: #fca5a5; border: 1px solid rgba(239,68,68,0.35); padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; }
+
+/* ===== ACCOUNT LOCK ===== */
+.lock-item {
+    display: flex; align-items: center; gap: 12px; padding: 10px 12px;
+    background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.15);
+    border-radius: 8px; margin-bottom: 8px;
+}
+.lock-email { font-size: 12px; font-weight: 700; color: #FFD700; flex: 1; }
+.lock-count { font-size: 11px; color: #94a3b8 !important; }
+
+/* ===== TABEL ===== */
+.sec-card table td, .card table td { color: #f1f5f9 !important; }
+.card-title { color: #f1f5f9 !important; }
+.sec-status-sub { color: #e2e8f0 !important; }
+
+/* Shield icon pulse */
+@keyframes shieldPulse {
+    0%,100% { box-shadow: 0 0 18px rgba(6,182,212,0.4), 0 0 0 1px rgba(6,182,212,0.2); }
+    50%      { box-shadow: 0 0 28px rgba(6,182,212,0.7), 0 0 0 1px rgba(6,182,212,0.4); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) {
+    .sec-stats { grid-template-columns: repeat(3, 1fr); }
+    .sec-grid2 { grid-template-columns: 1fr; }
+}
